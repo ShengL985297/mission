@@ -7,20 +7,19 @@
     </head>
         <body>
         <?php
-    //m3-5のないようにm4を反映
         //データベース設定
         $dsn = 'データベース名'; 
         $user = 'ユーザー名';
-	    $password = 'パスワード';
+	$password = 'パスワード';
         $dbh = new PDO($dsn, $user, $password, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_EMULATE_PREPARES => false,]);
         //テーブル作成
         $sql = "CREATE TABLE IF NOT EXISTS m5_1" 
 	    ." ("
 	    . "id INT AUTO_INCREMENT PRIMARY KEY,"
 	    . "name char(32),"
-        . "comment TEXT,"
-        . "date DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,"
-        . "password TEXT"
+            . "comment TEXT,"
+            . "date DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,"
+            . "password TEXT"
 	    .");";
         $stmt = $dbh->query($sql);
 
@@ -89,7 +88,7 @@
                 }
             }
         }
-        //編集
+        //編集(送信が押された時：データ入力)
         if (isset($_POST['submit'])) {
             $edi_name = $_POST["name"];
             $edi_comment = $_POST["comment"];
@@ -109,7 +108,6 @@
                 }
             }
         } 
-
         ?>
         
         <form action="m5-1.php" method="post">
@@ -132,7 +130,7 @@
         <?php
         //データレコード抽出、表示
         $sql = 'SELECT * FROM m5_1'; //4-6の表示させる機能
-	    $stmt = $dbh->query($sql);
+	$stmt = $dbh->query($sql);
         $results = $stmt->fetchAll();
         foreach ($results as $row){
             //$rowの中にはテーブルのカラム名が入る
