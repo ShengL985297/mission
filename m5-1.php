@@ -1,4 +1,3 @@
-<!--完了！-->
 <!DOCTYPE html>
 <html>
     <head>
